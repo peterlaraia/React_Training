@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  	"start": "webpack-dev-server --public 192.168.11.33:8080 --host 0.0.0.0",
+    "start": "webpack-dev-server --public 192.168.11.33:8080 --host 0.0.0.0 --compress",
     "build": "webpack"
   },
   "babel": {
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },

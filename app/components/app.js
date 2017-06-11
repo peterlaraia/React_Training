@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Popular } from './popular';
+import { Popular } from './popular/popular';
 
 export class App extends React.Component {
 	render() {
