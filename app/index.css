@@ -98,6 +98,19 @@ a {
 	font-weight: bold;
 }
 
+.reset-btn {
+  border: none;
+  background: transparent;
+  color: #d0021b;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.reset-btn:hover {
+  cursor: pointer;
+}
+
 .home-container {
 	display: flex;
 	flex-direction: column;

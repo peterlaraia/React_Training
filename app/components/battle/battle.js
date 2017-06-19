@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { PlayerInput } from './player-input';
+import { PlayerPreview } from './player-preview';
 
 export class Battle extends React.Component {
   constructor(props) {
@@ -9,11 +11,12 @@ export class Battle extends React.Component {
     this.state = {
       playerOneName: '',
       playerTwoName: '',
-      playerOneImg: null,
-      playerTwoImg: null
+      playerOneImg: undefined,
+      playerTwoImg: undefined
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSubmit(id, username) {
@@ -25,16 +28,36 @@ export class Battle extends React.Component {
     });
   }
 
+  handleReset(id) {
+    this.setState(() => {
+      const newState = {};
+      newState[id + 'Name'] = '';
+      newState[id + 'Img'] = undefined;
+      return newState;
+    });
+  }
+
   render() {
+    const match = this.props.match;
     const playerOneName = this.state.playerOneName;
     const playerTwoName = this.state.playerTwoName;
+    const playerOneImg = this.state.playerOneImg;
+    const playerTwoImg = this.state.playerTwoImg;
 
     return (
       <div>
         <div className='row'>
-          {!playerOneName && <PlayerInput id='playerOne' label='Player One' onSubmit={this.handleSubmit} />}
-          {!playerTwoName && <PlayerInput id='playerTwo' label='Player Two' onSubmit={this.handleSubmit} />}
+          {playerOneName ?
+            <PlayerPreview id='playerOne' avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} /> :
+            <PlayerInput id='playerOne' label='Player One' onSubmit={this.handleSubmit} />}
+          {playerTwoName ?
+            <PlayerPreview id='playerTwo' avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} /> :
+            <PlayerInput id='playerTwo' label='Player Two' onSubmit={this.handleSubmit} />}
         </div>
+        {playerOneImg && playerTwoImg && <Link className='btn' to={{
+          pathname: match.url + '/results',
+          search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
+          }}>Battle</Link>}
       </div>
     )
   }
