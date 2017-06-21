@@ -48,16 +48,20 @@ export class Battle extends React.Component {
       <div>
         <div className='row'>
           {playerOneName ?
-            <PlayerPreview id='playerOne' avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} /> :
+            <PlayerPreview avatar={playerOneImg} username={playerOneName} onReset={this.handleReset}>
+              <button className='reset-btn' onClick={this.handleReset.bind(null, 'playerOne')}>Reset</button>
+            </PlayerPreview> :
             <PlayerInput id='playerOne' label='Player One' onSubmit={this.handleSubmit} />}
           {playerTwoName ?
-            <PlayerPreview id='playerTwo' avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} /> :
+            <PlayerPreview avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset}>
+              <button className='reset-btn' onClick={this.handleReset.bind(null, 'playerOne')}>Reset</button>
+            </PlayerPreview> :
             <PlayerInput id='playerTwo' label='Player Two' onSubmit={this.handleSubmit} />}
         </div>
         {playerOneImg && playerTwoImg && <Link className='btn' to={{
           pathname: match.url + '/results',
           search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
-          }}>Battle</Link>}
+        }}>Battle</Link>}
       </div>
     )
   }
