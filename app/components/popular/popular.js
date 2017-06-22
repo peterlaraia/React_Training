@@ -1,6 +1,7 @@
 import React from 'react';
 import { Languages } from './languages';
 import { RepoGrid } from './repo-grid'
+import { Loading } from '../shared/loading';
 import { GithubApi } from '../../utils/github-api';
 
 export class Popular extends React.Component {
@@ -43,7 +44,7 @@ export class Popular extends React.Component {
 					onSelect={this.updateLanguage}
 				/>
 				{
-					!this.state.repos ? <p>Loading...</p> : <RepoGrid repos={this.state.repos} />
+					!this.state.repos ? <Loading text='Downloading' /> : <RepoGrid repos={this.state.repos} />
 				}
 			</div>
 		)

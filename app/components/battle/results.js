@@ -2,8 +2,9 @@ import React from 'react';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 
-import { GithubApi } from '../../utils/github-api';
 import { PlayerResult } from './player-result';
+import { Loading } from '../shared/loading';
+import { GithubApi } from '../../utils/github-api';
 
 export class Results extends React.Component {
 
@@ -46,7 +47,7 @@ export class Results extends React.Component {
     const error = this.state.error;
 
     if (loading) {
-      return <p>Loading...</p>
+      return <Loading />
     }
 
     if (error) {
